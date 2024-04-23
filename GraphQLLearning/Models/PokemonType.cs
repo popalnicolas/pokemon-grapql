@@ -6,7 +6,7 @@ namespace GraphQLLearning.Models;
 public class PokemonType
 {
     [Column("pokemon_type_id")]
-    [GraphQLName("id")]
+    [GraphQLIgnore]
     public int PokemonTypeId { get; set; }
     
     [Column("pokemon_type_name")]
