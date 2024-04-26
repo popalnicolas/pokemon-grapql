@@ -1,5 +1,6 @@
 using GraphQLLearning;
 using GraphQLLearning.DataContext;
+using GraphQLLearning.Middleware;
 using GraphQLLearning.Repositories;
 using GraphQLLearning.Services;
 using HotChocolate.AspNetCore;
@@ -17,6 +18,8 @@ builder.Services.AddDbContext<PokemonContext>(options =>
 {
     options.UseSqlServer("Server=127.0.0.1;Database=pokemons;User Id=SA;Password=yourStrong(!)Password;TrustServerCertificate=True");
 });
+
+builder.Services.AddAuthorizationPolicies();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"))

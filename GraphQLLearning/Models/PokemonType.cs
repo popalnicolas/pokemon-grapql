@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using GraphQLLearning.Constants;
+using HotChocolate.Authorization;
 
 namespace GraphQLLearning.Models;
 
@@ -6,7 +8,8 @@ namespace GraphQLLearning.Models;
 public class PokemonType
 {
     [Column("pokemon_type_id")]
-    [GraphQLIgnore]
+    [GraphQLName("id")]
+    [Authorize(Policy = Policy.PokemonReadWriteAllPolicy)]
     public int PokemonTypeId { get; set; }
     
     [Column("pokemon_type_name")]
@@ -14,6 +17,6 @@ public class PokemonType
     public string PokemonTypeName { get; set; }
     
     [Column("pokemon")]
-    [GraphQLName("pokemon")]
+    [GraphQLIgnore]
     public List<Pokemon> Pokemons { get; set; }
 }
